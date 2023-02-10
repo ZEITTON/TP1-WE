@@ -5,25 +5,42 @@ function DnD(canvas, interactor) {
 	// Définir ici les attributs de la 'classe'
 	this.xInit=0;
 	this.yInit=0;
-	this.xPosFinal=0;
-	this.yPosFinal=0;
+	this.xFinal=0;
+	this.yFinal=0;
+	this.isPressed=false;
 
 	// Developper les 3 fonctions gérant les événements
 	this.pression = function(evt){
 	    var pos=getMousePosition(canvas, evt);
 	    this.xInit=pos.x;
 	    this.yInit=pos.y;
-        console.log(evt);
+	    this.isPressed=true;
+        console.log(pos);
+
+        if(this.isPressed){
+            var pos=getMousePosition(canvas, evt);
+            this.xFinal=pos.x;
+            this.yFinal=pos.y;
+            console.log(pos);
+        }
 	}.bind(this)
 
 	this.deplacement = function(evt){
-        console.log(evt);
+        var pos=getMousePosition(canvas, evt);
+        this.xInit=pos.x;
+        this.yInit=pos.y;
+        this.isPressed=false;
+        console.log(pos);
 	}.bind(this)
 
 	this.relachement = function(evt){
         console.log(evt);
 	}.bind(this)
 	// Associer les fonctions précédentes aux évènements du canvas.
+	canvas.addEventListener('mousedown', this.pression, false);
+    canvas.addEventListener('mousemove', this.deplacement, false);
+    canvas.addEventListener('mouseup', this.relachement, false);
+
 };
 
 
