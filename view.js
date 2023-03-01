@@ -18,5 +18,5 @@ Line.prototype.paint = function(ctx) {
 Drawing.prototype.paint = function(ctx) {
     ctx.fillStyle = 'F0F0F0';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
-    this.shapArray.forEach(element => element.paint(ctx));
+    this.shapeArray.forEach(element => element.paint(ctx));
 };
