@@ -10,7 +10,7 @@ Line.prototype.paint = function(ctx) {
     ctx.strokeStyle = this.color;
     ctx.lineWidth = this.tickness;
     ctx.beginPath();
-    ctx.moveTo(this.startX, startY);
+    ctx.moveTo(this.startX, this.startY);
     ctx.lineTo(this.endX, this.endY);
 };
 
