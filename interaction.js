@@ -29,11 +29,15 @@ function DnD(canvas, interactor) {
         var pos=getMousePosition(canvas, evt);
         this.xInit=pos.x;
         this.yInit=pos.y;
-        this.isPressed=false;
+        this.isPressed=true;
         console.log(pos);
 	}.bind(this)
 
 	this.relachement = function(evt){
+	    var pos=getMousePosition(canvas, evt);
+        this.xFinal=pos.x;
+        this.yFinal=pos.y;
+        this.isPressed=false;
         console.log(evt);
 	}.bind(this)
 	// Associer les fonctions précédentes aux évènements du canvas.
