@@ -1,16 +1,22 @@
 
-var editingMode = { rect: 0, line: 1 };
+var editingMode = { rect: 0, line: 1, circle: 2, pinceau: 3, lineDash: 4, lineCap: 5 };
+
+let currentOption = [false, false, false];
 
 function Pencil(ctx, drawing, canvas) {
-	this.currEditingMode = editingMode.line;
+	this.currEditingMode = editingMode.pinceau;
 	this.currLineWidth = 5;
 	this.currColour = '#000000';
 	this.currentShape = 0;
 
 	document.getElementById('butRect').onclick= (_) => this.currEditingMode=editingMode.rect;
 	document.getElementById('butLine').onclick= (_) => this.currEditingMode=editingMode.line;
+	document.getElementById('butCircle').onclick= (_) => this.currEditingMode=editingMode.circle;
+	document.getElementById('butPinceau').onclick= (_) => this.currEditingMode=editingMode.pinceau;
 	document.getElementById('spinnerWidth').onchange= (e) => this.currLineWidth=e.target.value;
 	document.getElementById('colour').onchange= (e) => this.currColour=e.target.value;
+	document.getElementById('butLineDash').onclick= (_) => this.currEditingMode=editingMode.lineDash;
+	document.getElementById('butLineCap').onclick= (_) => this.currEditingMode=editingMode.lineCap;
 
 	// Liez ici les widgets à la classe pour modifier les attributs présents ci-dessus.
 
@@ -24,8 +30,16 @@ function Pencil(ctx, drawing, canvas) {
 	this.onInteractionUpdate=function(dnd){
         if(this.currEditingMode == editingMode.rect){
             this.currentShape = new Rectangle(dnd.xInit, dnd.yInit, this.currLineWidth, this.currColour, dnd.yFinal - dnd.yInit, dnd.xFinal - dnd.xInit);
-	    } else {
+	    }else if(this.currEditingMode == editingMode.line){
 	        this.currentShape = new Line(dnd.xInit, dnd.yInit, this.currLineWidth, this.currColour, dnd.xFinal, dnd.yFinal);
+	    }else if(this.currEditingMode == editingMode.circle){
+	        this.currentShape = new Circle(dnd.xInit, dnd.yInit, this.currLineWidth, this.currColour, dnd.xFinal);
+	    }else if(this.currEditingMode == editingMode.pinceau){
+	        this.currentShape = new Pinceau(dnd.xInit, dnd.yInit, this.currLineWidth, this.currColour, dnd.xFinal, dnd.yFinal);
+	    }else if(this.currEditingMode == editingMode.lineCap){
+            this.currentShape = new LineCap(dnd.xInit, dnd.yInit, this.currLineWidth, this.currColour, dnd.xFinal, dnd.yFinal);
+	    }else {
+	        this.currentShape = new LineDash(dnd.xInit, dnd.yInit, this.currLineWidth, this.currColour, dnd.xFinal, dnd.yFinal);
 	    }
 	    drawing.paint(ctx, canvas);
         this.currentShape.paint(ctx);
