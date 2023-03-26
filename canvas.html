@@ -2,14 +2,17 @@
 
 <html>
   <head>
-    <title>A simple canvas</title>
+    <title>A Simple Canvas</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 	<link href="canvas.css" rel="stylesheet" type="text/css">
  </head>
 
  <body>
-	<div class="container"> 
+	<div class="container">
+		<div style="color:#0F111A;">
+			<h1>A Ton Pinceau !</h1>
+		</div>
 		<div class="row">
 		<form>
 			<div class="mx-button">
@@ -33,8 +36,8 @@
 				<label for="butCircle" unselectable>Circle</label>
 				</div>
 			<div class="mx-button">
-				<input type="radio" name="mx" id="butPinceau" checked>
-				<label for="butPinceau" unselectable>Pinceau</label>
+				<input type="radio" name="mx" id="butPainting" checked>
+				<label for="butPainting" unselectable>Pinceau</label>
 				</div>
 		</form>
 		<input id="spinnerWidth" type="number" min="1" max="50" step="1" value="5" size="4">
@@ -50,8 +53,9 @@
 				<canvas class="myCanvas" id="myCanvas"></canvas>
 			</div>
 
+			<h2>Ma liste de formes</h2>
 			<div class="col-md-4">
-				<ul class="list-unstyled" id="shapeList">
+				<ul class="bordered-list"  id="shapeList">
 				</ul>
 			</div>
 		</div>

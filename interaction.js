@@ -1,4 +1,5 @@
 
+
 // La création d'un Dnd requière un canvas et un interacteur.
 // L'interacteur viendra dans un second temps donc ne vous en souciez pas au départ.
 function DnD(canvas, interactor) {
@@ -11,15 +12,13 @@ function DnD(canvas, interactor) {
 	this.interactor=interactor;
 
 	// Developper les 3 fonctions gérant les événements
+	//si la souris est pressée
 	this.pression = function(evt){
 	    var pos=getMousePosition(canvas, evt);
 	    this.xInit=pos.x;
 	    this.yInit=pos.y;
 	    this.isPressed=true;
-        //console.log(pos);
         this.interactor.onInteractionStart(this);
-
-
 	}.bind(this)
 
 	this.deplacement = function(evt){
@@ -27,7 +26,6 @@ function DnD(canvas, interactor) {
             var pos=getMousePosition(canvas, evt);
             this.xFinal=pos.x;
             this.yFinal=pos.y;
-            //console.log(pos);
             this.interactor.onInteractionUpdate(this);
         }
 	}.bind(this)
@@ -37,16 +35,15 @@ function DnD(canvas, interactor) {
         this.xFinal=pos.x;
         this.yFinal=pos.y;
         this.isPressed=false;
-        //console.log(pos);
         this.interactor.onInteractionEnd(this);
 	}.bind(this)
-	// Associer les fonctions précédentes aux évènements du canvas.
+
+	// Association des fonctions précédentes aux évènements du canvas.
 	canvas.addEventListener('mousedown', this.pression, false);
     canvas.addEventListener('mousemove', this.deplacement, false);
     canvas.addEventListener('mouseup', this.relachement, false);
 
 };
-
 
 // Place le point de l'événement evt relativement à la position du canvas.
 function getMousePosition(canvas, evt) {
@@ -56,6 +53,3 @@ function getMousePosition(canvas, evt) {
     y: evt.clientY - rect.top
   };
 };
-
-
-
