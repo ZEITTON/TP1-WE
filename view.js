@@ -69,7 +69,7 @@ Painting.prototype.paint = function(ctx) {
     ctx.strokeStyle = this.color;
     ctx.lineWidth = this.thickness;
     ctx.lineCap = "round";
-
+    ctx.setLineDash([]);
     // Si le tableau de points est vide, on ne dessine rien
     if (this.points.length === 0) {
         return;
@@ -109,15 +109,15 @@ function updateShapeList(index, shape){
 function toDom(shape, index) {
   if (shape instanceof Rectangle) {
     return `<li id="liRemove${index}"><span style="color:${shape.color}">[]
-    </span> &nbsp;Rectangle&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-default remove ml-2" id="remove${index}" onclick="removeItem(${index})">
+    </span> &nbsp;Rectangle&nbsp;&nbsp;<button type="button" class="btn btn-default remove ml-2" id="remove${index}" onclick="removeItem(${index})">
     <span class="glyphicon glyphicon-remove-sign"></span></button></li>`;
   } else if (shape instanceof Line) {
     return `<li id="liRemove${index}"><span style="color:${shape.color}">/
-    </span> &nbsp;Line&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-default remove ml-2" id="remove${index}" onclick="removeItem(${index})">
+    </span> &nbsp;Line&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-default remove ml-2" id="remove${index}" onclick="removeItem(${index})">
     <span class="glyphicon glyphicon-remove-sign"></span></button></li>`;
   } else if (shape instanceof Circle){
     return `<li id="liRemove${index}"><span style="color:${shape.color}">o
-    </span> &nbsp;Circle&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-default remove ml-2" id="remove${index}" onclick="removeItem(${index})">
+    </span> &nbsp;Circle&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-default remove" id="remove${index}" onclick="removeItem(${index})">
     <span class="glyphicon glyphicon-remove-sign"></span></button></li>`;
   } else if(shape instanceof Painting){
       return `<li id="liRemove${index}"><span style="color:${shape.color}">✎
@@ -125,7 +125,7 @@ function toDom(shape, index) {
           <span class="glyphicon glyphicon-remove-sign"></span></button></li>`;
   } else if(shape instanceof LineCap){
       return `<li id="liRemove${index}"><span style="color:${shape.color}">╰
-          </span> &nbsp;LineCap&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-default remove ml-2" id="remove${index}" onclick="removeItem(${index})">
+          </span> &nbsp;LineCap&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-default remove" id="remove${index}" onclick="removeItem(${index})">
           <span class="glyphicon glyphicon-remove-sign"></span></button></li>`;
   } else {
       return `<li id="liRemove${index}"><span style="color:${shape.color}">-
