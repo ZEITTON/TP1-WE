@@ -11,11 +11,12 @@ Ceci est une application de peinture simple construite avec HTML, CSS et JavaScr
 
 ## Utilisation
 
-Pour utiliser l'application, il suffit de cloner le dépôt et d'ouvrir le fichier index.html dans votre navigateur.
+Pour utiliser l'application, il suffit de cloner le dépôt et d'ouvrir le fichier
+canvas.html dans votre navigateur.
 
 ## Auteurs
 
-A Simple Canvas a été développé par CHAPLAIS Alexandre et FONSECA Jordan.
+"A Simple Canvas" a été développé par CHAPLAIS Alexandre et FONSECA Jordan.
 
 ## Developpement
 
@@ -24,4 +25,5 @@ de la répartition des fonctionnalités entre les différents fichiers JavaScrip
 Nous avons également rencontré des difficultés lors du dessin sur le canvas,
 où nous avons réalisé que ctx.closePath() était nécessaire pour que le prototype fonctionne correctement.
 
-
+Le bouton remove (la croix dans la liste de formes) fonctionne mais parfois il est
+nécessaire de cliquer dans le bas de l'icone pour pouvoir supprimer l'élément.

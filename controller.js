@@ -1,5 +1,5 @@
 
-var editingMode = { rect: 0, line: 1, circle: 2, painting: 3, lineDash: 4, lineCap: 5 };
+var editingMode = { rect: 0, line: 1, circle: 2, painting: 3, lineDash: 4, lineCap: 5, reset: 6 };
 
 let currentOption = [false, false, false];
 
@@ -64,6 +64,7 @@ function Pencil(ctx, drawing, canvas) {
             document.getElementById("remove"+uuid).onclick = (event) => removeItem(event, ctx, canvas);
         }
         this.currentShape=null;
+        document.getElementById('butReset').onclick = (_) => resetShapeList(ctx, canvas);
     }.bind(this);
 
     //fonction remove qui supprime l'item selectionné du canvas
@@ -76,6 +77,19 @@ function Pencil(ctx, drawing, canvas) {
         liElement.remove();
         drawing.paint(ctx, canvas);
       }
+    }
+
+    function resetShapeList(ctx, canvas) {
+      // Obtient la liste avec l'ID "shapeList"
+      const shapeList = document.getElementById('shapeList');
+
+      // Supprimez tous les éléments de la liste
+      shapeList.innerHTML = "";
+      //supprimer les elements du canvas
+      ctx.fillStyle = 'F0F0F0';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      drawing.shapeArray.clear();
     }
 
     //genere un id aleatoire pour chaque forme crée pour pouvoir l'ajouter dans une liste

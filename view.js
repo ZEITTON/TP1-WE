@@ -133,4 +133,3 @@ function toDom(shape, index) {
           <span class="glyphicon glyphicon-remove-sign"></span></button></li>`;
   }
 }
-
